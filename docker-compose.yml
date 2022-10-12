@@ -181,8 +181,9 @@ services:
     volumes:
       - jellyfin-config:/config
       - torrent-downloads:/data
-  # devices:
-   #  - /dev/videoN:/dev/videoN # Mount GPU device 
+    devices:
+      # - /dev/videoN:/dev/videoN # Mount GPU device 
+      - /dev/dri/renderD128:/dev/dri/renderD128
     ports:
       - 8096:8096
       - 7359:7359/udp
