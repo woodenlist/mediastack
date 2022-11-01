@@ -51,6 +51,8 @@ services:
       # - 9091:9091
       # - 51413:51413
       # - 51413:51413/udp
+      # Prowlarr Ports
+      - 9696:9696
     restart: "unless-stopped"
   transmission:
     profiles: ["tx", "stack-1"]
@@ -83,6 +85,9 @@ services:
     container_name: qbittorrent
     profiles: ["qbt", "stack-2"]
     image: lscr.io/linuxserver/qbittorrent:4.4.5-r0-ls219
+    # Comment this if vpn is disabled
+    depends_on: 
+      - vpn
     networks:
       - mynetwork
     network_mode: service:vpn # Comment this line if vpn is disabled
@@ -156,6 +161,9 @@ services:
     profiles: ["prowlarr", "stack-2"]
     container_name: prowlarr
     image: linuxserver/prowlarr:develop-0.4.6.1969-ls69
+    # Comment this if vpn is disabled
+    depends_on:
+      - vpn
     networks:
       - mynetwork
     environment:
@@ -164,8 +172,9 @@ services:
       - TZ=UTC
     volumes:
       - prowlarr-config:/config
-    ports:
-      - 9696:9696
+    ## Uncomment below ports if VPN is disabled.
+    # ports:
+    #   - 9696:9696
     restart: unless-stopped
 
   jellyfin:
