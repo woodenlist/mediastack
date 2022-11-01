@@ -164,6 +164,7 @@ services:
     # Comment this if vpn is disabled
     depends_on:
       - vpn
+    network_mode: service:vpn # Comment this line if vpn is disabled
     networks:
       - mynetwork
     environment:
