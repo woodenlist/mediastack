@@ -84,7 +84,7 @@ services:
   qbittorrent:
     container_name: qbittorrent
     profiles: ["qbt", "stack-2"]
-    image: lscr.io/linuxserver/qbittorrent:4.4.5-r0-ls219
+    image: lscr.io/linuxserver/qbittorrent:4.5.0
     # Comment this if vpn is disabled
     depends_on: 
       - vpn
