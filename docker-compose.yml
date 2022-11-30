@@ -125,7 +125,7 @@ services:
 
   sonarr:
     profiles: ["base", "sonarr", "stack-1", "stack-2"]
-    image: lscr.io/linuxserver/sonarr:v4-4.0.0.141-ls6
+    image: lscr.io/linuxserver/sonarr:4.0.0-v4
     container_name: sonarr
     networks:
       - mynetwork
