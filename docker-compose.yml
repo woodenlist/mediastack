@@ -160,7 +160,7 @@ services:
   prowlarr:
     profiles: ["prowlarr", "stack-2"]
     container_name: prowlarr
-    image: linuxserver/prowlarr:develop-0.4.6.1969-ls69
+    image: linuxserver/prowlarr:0.4.9-develop
     # Comment this if vpn is disabled
     depends_on:
       - vpn
