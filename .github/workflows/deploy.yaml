@@ -1,0 +1,21 @@
+name: Deploy application
+
+on:
+  push:
+    branches: [ live ]
+
+jobs:
+  build:
+    if: "contains(github.event.head_commit.message, 'OK DEPLOY')"
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Deploy media stack
+      run: |
+        curl -k -X POST -d 'Redeploy with latest image of same tag' "https://home.navratangupta.in:9443/api/stacks/webhooks/${{ secrets.MEDIA_STACK_PORTAINER_WEBHOOK_TOKEN }}"
+    - name: Sleep for 30 seconds
+      run: sleep 30
+    - name: Restart Nginx
+      run: |
+        curl -k -X POST -d 'Redeploy with latest image of same tag' "https://home.navratangupta.in:9443/api/stacks/webhooks/${{ secrets.NGINX_PORTAINER_WEBHOOK_TOKEN }}"
