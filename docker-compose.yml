@@ -199,6 +199,15 @@ services:
       - 7359:7359/udp
       - 8920:8920
     restart: unless-stopped
+  cleanmyarr:
+    profiles: ["base", "cleanmyarr", "stack-2"]
+    image: linuxshots/cleanmyarr:0.1.0-beta
+    container_name: cleanmyarr
+    networks:
+      - mynetwork
+    volumes:
+      - cleanmyarr-config:/config
+    restart: unless-stopped
 
 volumes:
   torrent-downloads:
@@ -211,6 +220,7 @@ volumes:
   qbittorrent-config:
   tx-config:
   tx-watch:
+  cleanmyarr-config:
 
 networks:
   mynetwork:
