@@ -201,7 +201,7 @@ services:
     restart: unless-stopped
   cleanmyarr:
     profiles: ["base", "cleanmyarr", "stack-2"]
-    image: linuxshots/cleanmyarr:0.1.0-beta
+    image: linuxshots/cleanmyarr:0.2.0-beta
     container_name: cleanmyarr
     networks:
       - mynetwork
