@@ -200,6 +200,9 @@ services:
       - 8920:8920
     restart: unless-stopped
   cleanmyarr:
+    depends_on:
+      - radarr
+      - sonarr
     profiles: ["base", "cleanmyarr", "stack-2"]
     image: linuxshots/cleanmyarr:0.2.1-beta
     container_name: cleanmyarr
