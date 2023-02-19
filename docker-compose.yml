@@ -204,7 +204,7 @@ services:
       - radarr
       - sonarr
     profiles: ["base", "cleanmyarr", "stack-2"]
-    image: linuxshots/cleanmyarr:0.3.0-beta
+    image: linuxshots/cleanmyarr:0.3.1-beta
     container_name: cleanmyarr
     networks:
       - mynetwork
