@@ -199,12 +199,13 @@ services:
       - 7359:7359/udp
       - 8920:8920
     restart: unless-stopped
+
   cleanmyarr:
     depends_on:
       - radarr
       - sonarr
     profiles: ["base", "cleanmyarr", "stack-2"]
-    image: linuxshots/cleanmyarr:0.4.1-beta
+    image: linuxshots/cleanmyarr:0.5.0-develop
     container_name: cleanmyarr
     networks:
       - mynetwork
