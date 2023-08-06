@@ -318,7 +318,7 @@ services:
       # Redirect / to /jellyfin
 
       - traefik.http.routers.jellyfin-root.entryPoints=websecure
-      - 'traefik.http.routers.jellyfin-root.rule=Host(`${DOMAIN}`) && && Path(`/`)'
+      - 'traefik.http.routers.jellyfin-root.rule=Host(`${DOMAIN}`) && && PathPrefix(`/`)'
       - 'traefik.http.routers.jellyfin-root.middlewares=jellyfin-root-mw'
       - "traefik.http.middlewares.jellyfin-root-mw.redirectregex.regex=^(.*)/$$"
       - "traefik.http.middlewares.jellyfin-root-mw.redirectregex.replacement=$$1/jellyfin/"
