@@ -16,6 +16,8 @@ services:
       - --certificatesresolvers.le.acme.storage=/letsencrypt/acme.json
       - --certificatesresolvers.le.acme.httpChallenge.entrypoint=web
       - --certificatesresolvers.le.acme.httpChallenge=true
+      - --entrypoints.web.http.redirections.entrypoint.to=websecure
+      - --entrypoints.web.http.redirections.entrypoint.scheme=https
     restart: unless-stopped
     ports:
       - 80:80
