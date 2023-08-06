@@ -161,14 +161,14 @@ services:
     restart: "unless-stopped"
     labels:
       - traefik.enable=true
-      - "traefik.http.routers.sonarr.entrypoints=https"
-      - "traefik.http.services.sonarr.loadbalancer.server.port=7878"
+      - "traefik.http.routers.radarr.entrypoints=https"
+      - "traefik.http.services.radarr.loadbalancer.server.port=7878"
       # Routers rules
-      - "traefik.http.routers.sonarr.entrypoints=websecure"
-      - traefik.http.routers.sonarr.rule=Host(`${DOMAIN}`) && PathPrefix(`/radarr`)
-      - traefik.http.routers.sonarr.tls=true
-      - traefik.http.routers.sonarr.tls.certresolver=le
-      - traefik.http.routers.sonarr.tls.domains[0].main=${DOMAIN}
+      - "traefik.http.routers.radarr.entrypoints=websecure"
+      - traefik.http.routers.radarr.rule=Host(`${DOMAIN}`) && PathPrefix(`/radarr`)
+      - traefik.http.routers.radarr.tls=true
+      - traefik.http.routers.radarr.tls.certresolver=le
+      - traefik.http.routers.radarr.tls.domains[0].main=${DOMAIN}
 
   sonarr:
     profiles: ["base", "sonarr", "stack-1", "stack-2"]
