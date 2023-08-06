@@ -58,7 +58,6 @@ services:
       - "traefik.enable=true"
       # adding a slash to the end
       - "traefik.http.routers.qbt.entrypoints=websecure"
-      - "traefik.http.routers.qbt.rule=PathPrefix(`/qbt`)"
       - "traefik.http.middlewares.qbt-redirect.redirectregex.regex=^(.*)/qbt$$"
       - "traefik.http.middlewares.qbt-redirect.redirectregex.replacement=$$1/qbt/"
       - "traefik.http.middlewares.qbt-strip.stripprefix.prefixes=/qbt/"
@@ -71,7 +70,7 @@ services:
       - "traefik.http.services.qbt.loadbalancer.server.port=5080"
       - "traefik.http.services.qbt.loadbalancer.passhostheader=false"
       # Domain and TLS
-      - traefik.http.routers.qbt.rule=Host(`${DOMAIN}`)
+      - traefik.http.routers.qbt.rule=Host(`${DOMAIN}`) && PathPrefix(`/qbt`)
       - traefik.http.routers.qbt.tls=true
       - traefik.http.routers.qbt.tls.certresolver=le
       - traefik.http.routers.qbt.tls.domains[0].main=${DOMAIN}
@@ -169,8 +168,7 @@ services:
       - "traefik.http.services.sonarr.loadbalancer.server.port=8989"
       # Routers rules
       - "traefik.http.routers.sonarr.entrypoints=websecure"
-      - traefik.http.routers.sonarr.rule=Host(`${DOMAIN}`)
-      - "traefik.http.routers.sonarr.rule=PathPrefix(`/sonarr`)"
+      - traefik.http.routers.sonarr.rule=Host(`${DOMAIN}`) && PathPrefix(`/sonarr`)
       - traefik.http.routers.sonarr.tls=true
       - traefik.http.routers.sonarr.tls.certresolver=le
       - traefik.http.routers.sonarr.tls.domains[0].main=${DOMAIN}
