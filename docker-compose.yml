@@ -167,7 +167,6 @@ services:
       - traefik.enable=true
       - "traefik.http.routers.sonarr.entrypoints=https"
       - "traefik.http.services.sonarr.loadbalancer.server.port=8989"
-      - "traefik.http.routers.sonarr.middlewares=forward-auth"
       # Routers rules
       - "traefik.http.routers.sonarr.entrypoints=websecure"
       - traefik.http.routers.sonarr.rule=Host(`${DOMAIN}`)
@@ -175,8 +174,6 @@ services:
       - traefik.http.routers.sonarr.tls=true
       - traefik.http.routers.sonarr.tls.certresolver=le
       - traefik.http.routers.sonarr.tls.domains[0].main=${DOMAIN}
-      # Middleware
-      - "traefik.http.middlewares.sonarr-headers.headers.customrequestheaders.X-Frame-Options=SAMEORIGIN"
 
   jackett:
     profiles: ["jackett", "stack-1"]
