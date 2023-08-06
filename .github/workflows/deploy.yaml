@@ -16,6 +16,6 @@ jobs:
         curl -k -X POST -d 'Redeploy with latest image of same tag' "${{ secrets.MEDIA_STACK_PORTAINER_WEBHOOK }}"
     - name: Sleep for 30 seconds
       run: sleep 30
-    - name: Restart Nginx
-      run: |
-        curl -k -X POST -d 'Redeploy with latest image of same tag' "${{ secrets.NGINX_PORTAINER_WEBHOOK }}"
+    # - name: Restart Nginx
+    #   run: |
+    #     curl -k -X POST -d 'Redeploy with latest image of same tag' "${{ secrets.NGINX_PORTAINER_WEBHOOK }}"
