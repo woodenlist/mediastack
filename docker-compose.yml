@@ -70,8 +70,9 @@ services:
       - "traefik.http.middlewares.qbt-headers.headers.customrequestheaders.Origin="
       - "traefik.http.routers.qbt.middlewares=qbt-strip,qbt-redirect,qbt-headers"
       # loadbalancer to *not* pass the host header
-      - "traefik.http.services.qbt.loadbalancer.server.port=5080"
-      - "traefik.http.services.qbt.loadbalancer.passhostheader=false"
+      - "traefik.http.routers.qbt.service=qbt-s"
+      - "traefik.http.services.qbt-s.loadbalancer.server.port=5080"
+      - "traefik.http.services.qbt-s.loadbalancer.passhostheader=false"
       # Domain and TLS
       - traefik.http.routers.qbt.rule=Host(`${DOMAIN}`) && PathPrefix(`/qbt`)
       - traefik.http.routers.qbt.tls=true
@@ -79,15 +80,14 @@ services:
       - traefik.http.routers.qbt.tls.domains[0].main=${DOMAIN}
 
       # For prowlarr
-
-      - "traefik.http.routers.prowlarr.entrypoints=https"
-      - "traefik.http.services.prowlarr.loadbalancer.server.port=9696"
-      # Routers rules
+      
       - "traefik.http.routers.prowlarr.entrypoints=websecure"
       - traefik.http.routers.prowlarr.rule=Host(`${DOMAIN}`) && PathPrefix(`/prowlarr`)
       - traefik.http.routers.prowlarr.tls=true
       - traefik.http.routers.prowlarr.tls.certresolver=le
       - traefik.http.routers.prowlarr.tls.domains[0].main=${DOMAIN}
+      - "traefik.http.routers.prowlarr.service=prowlarr-s"
+      - "traefik.http.services.prowlarr-s.loadbalancer.server.port=9696"
   transmission:
     profiles: ["tx", "stack-1"]
     container_name: transmission
