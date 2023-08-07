@@ -315,6 +315,17 @@ services:
       - 'traefik.http.middlewares.jellyfin-insecure-mw.redirectscheme.permanent=false'
       - 'traefik.http.routers.jellyfin-insecure.service=noop@internal'
 
+      # redirect / to /jellyfin
+
+      - "traefik.http.routers.jellyfin-root.rule=Host(`${DOMAIN}`)"
+      - "traefik.http.routers.jellyfin-root.entrypoints=websecure"
+      - "traefik.http.routers.jellyfin-root.tls.certresolver=le"
+
+      # the middleware 'jellyfin-root-mw' must be defined so that the regex rules can be attached to it
+      - "traefik.http.routers.jellyfin-root.middlewares=jellyfin-root-mw"
+      - "traefik.http.middlewares.jellyfin-root-mw.redirectregex.regex=^https:\\/\\/([^\\/]+)\\/?$$"
+      - "traefik.http.middlewares.jellyfin-root-mw.redirectregex.replacement=https://$$1/jellyfin"
+
   cleanmyarr:
     depends_on:
       - radarr
