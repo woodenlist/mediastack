@@ -268,7 +268,7 @@ services:
     depends_on:
       - radarr
       - sonarr
-    image: linuxshots/cleanmyarr:0.7.0
+    image: linuxshots/cleanmyarr:0.7.1
     container_name: cleanmyarr
     networks:
       - mynetwork
