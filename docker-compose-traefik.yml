@@ -26,6 +26,7 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.traefik.rule=Host(`${DOMAIN}`)
+      - traefik.http.routers.traefik.entryPoints=websecure
       - traefik.http.routers.traefik.tls=true
       - traefik.http.routers.traefik.tls.certresolver=le
       - traefik.http.routers.traefik.service=api@internal
