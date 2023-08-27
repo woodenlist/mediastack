@@ -34,11 +34,11 @@ services:
       - traefik.http.routers.traefik.tls.domains[0].main=${DOMAIN}
       - traefik.http.routers.traefik.middlewares=frontend
       - traefik.http.middlewares.frontend.basicAuth.users=${HASHED_ADMIN_USER_PASS}
-      - traefik.http.routers.traefik.middlewares=my-geoblock
-      - traefik.http.middlewares.my-geoblock.plugin.geoblock.allowLocalRequests=true
-      - 'traefik.http.middlewares.my-geoblock.plugin.geoblock.api=https://get.geojs.io/v1/ip/country/{ip}'
-      - traefik.http.middlewares.my-geoblock.plugin.geoblock.countries=IN
-      - traefik.http.middlewares.my-geoblock.plugin.logAllowedRequests=true
+      # - traefik.http.routers.traefik.middlewares=my-geoblock
+      # - traefik.http.middlewares.my-geoblock.plugin.geoblock.allowLocalRequests=true
+      # - 'traefik.http.middlewares.my-geoblock.plugin.geoblock.api=https://get.geojs.io/v1/ip/country/{ip}'
+      # - traefik.http.middlewares.my-geoblock.plugin.geoblock.countries=IN
+      # - traefik.http.middlewares.my-geoblock.plugin.logAllowedRequests=true
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - traefik-le:/letsencrypt
