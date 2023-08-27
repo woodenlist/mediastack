@@ -43,6 +43,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - traefik-le:/letsencrypt
       # - traefik-config:/etc/traefik
+      - traefik-local-plugins:/plugins-local/
     networks:
       - mynetwork
 
@@ -50,6 +51,7 @@ services:
 volumes:
   traefik-le:
   # traefik-config:
+  traefik-local-plugins:
 
 networks:
   mynetwork:
