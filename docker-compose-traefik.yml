@@ -17,8 +17,7 @@ services:
       - --certificatesresolvers.le.acme.httpChallenge=true
       - --entrypoints.web.http.redirections.entrypoint.to=websecure
       - --entrypoints.web.http.redirections.entrypoint.scheme=https
-      - --experimental.plugins.geoblock.modulename=github.com/PascalMinder/geoblock
-      - --experimental.plugins.geoblock.version=v0.2.6
+      - --experimental.localPlugins.geoblock.modulename=github.com/PascalMinder/geoblock
     restart: unless-stopped
     ports:
       - 80:80
