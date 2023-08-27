@@ -4,7 +4,6 @@ services:
     image: traefik:v2.10.4
     container_name: traefik
     command:
-
       - --api.dashboard=true
       - --providers.docker=true
       - --accesslog=true
@@ -18,6 +17,8 @@ services:
       - --certificatesresolvers.le.acme.httpChallenge=true
       - --entrypoints.web.http.redirections.entrypoint.to=websecure
       - --entrypoints.web.http.redirections.entrypoint.scheme=https
+      - --experimental.plugins.geoblock.modulename=github.com/PascalMinder/geoblock
+      - --experimental.plugins.geoblock.version=v0.2.6
     restart: unless-stopped
     ports:
       - 80:80
@@ -32,15 +33,22 @@ services:
       - traefik.http.routers.traefik.tls.domains[0].main=${DOMAIN}
       - traefik.http.routers.traefik.middlewares=frontend
       - traefik.http.middlewares.frontend.basicAuth.users=${HASHED_ADMIN_USER_PASS}
+      - traefik.http.routers.traefik.middlewares=my-geoblock
+      - traefik.http.middlewares.my-geoblock.plugin.geoblock.allowLocalRequests=true
+      - 'traefik.http.middlewares.my-geoblock.plugin.geoblock.api=https://get.geojs.io/v1/ip/country/{ip}'
+      - traefik.http.middlewares.my-geoblock.plugin.geoblock.countries=IN
+      - traefik.http.middlewares.my-geoblock.plugin.logAllowedRequests=true
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - traefik-le:/letsencrypt
+      # - traefik-config:/etc/traefik
     networks:
       - mynetwork
 
 
 volumes:
   traefik-le:
+  # traefik-config:
 
 networks:
   mynetwork:
