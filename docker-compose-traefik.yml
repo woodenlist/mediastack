@@ -4,6 +4,7 @@ services:
     image: traefik:v2.10.4
     container_name: traefik
     command:
+      - 
       - --api.dashboard=true
       - --providers.docker=true
       - --accesslog=true
@@ -34,7 +35,7 @@ services:
       - traefik.http.routers.traefik.tls.domains[0].main=${DOMAIN}
       - traefik.http.routers.traefik.middlewares=frontend
       - traefik.http.middlewares.frontend.basicAuth.users=${HASHED_ADMIN_USER_PASS}
-      - traefik.http.routers.traefik.middlewares=my-geoblock@file
+      - traefik.http.routers.traefik.middlewares=my-geoblock
       # - traefik.http.middlewares.my-geoblock.plugin.geoblock.allowLocalRequests=true
       # - 'traefik.http.middlewares.my-geoblock.plugin.geoblock.api=https://get.geojs.io/v1/ip/country/{ip}'
       # - traefik.http.middlewares.my-geoblock.plugin.geoblock.countries=IN
