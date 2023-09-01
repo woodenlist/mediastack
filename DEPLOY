@@ -22,3 +22,4 @@ JUL 14, 2023 Update tools
 Aug 6, 2023 Put Apps behind traefik
 Aug 11, 2023 Update SERVER_COUNTRIES
 Aug 12, 2023 Remove TX and Jackett and remove profiles except vpn. Update prowlarr
+Sep 1, 2023 Upgrade cleanmyarr to 0.8.0. ENV variable based config in cleanmyarr
