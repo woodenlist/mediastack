@@ -46,7 +46,7 @@ services:
 
 volumes:
   traefik-le:
-  # traefik-config:
+  traefik-config:
   # traefik-local-plugins:
 
 networks:
