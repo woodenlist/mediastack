@@ -18,6 +18,8 @@ services:
       - --certificatesresolvers.le.acme.httpChallenge=true
       - --entrypoints.web.http.redirections.entrypoint.to=websecure
       - --entrypoints.web.http.redirections.entrypoint.scheme=https
+      - --experimental.plugins.geoblock.moduleName=github.com/nscuro/traefik-plugin-geoblock
+      - --experimental.plugins.geoblock.version=v0.11.0
     restart: unless-stopped
     ports:
       - 80:80
@@ -36,7 +38,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - traefik-le:/letsencrypt
-      # - traefik-config:/etc/traefik
+      - traefik-config:/etc/traefik
       # - traefik-local-plugins:/plugins-local/
     networks:
       - mynetwork
