@@ -268,7 +268,7 @@ services:
     depends_on:
       - radarr
       - sonarr
-    image: linuxshots/cleanmyarr:0.8.0
+    image: linuxshots/cleanmyarr:0.8.1
     container_name: cleanmyarr
     environment:
       - CMA_MAINTENANCE_CYCLE=${CMA_MAINTENANCE_CYCLE:-""}
