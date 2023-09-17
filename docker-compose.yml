@@ -160,7 +160,7 @@ services:
 
   prowlarr:
     container_name: prowlarr
-    image: linuxserver/prowlarr:1.7.4
+    image: linuxserver/prowlarr:1.8.6
     # Comment this if vpn is disabled
     depends_on:               # Comment this line if vpn is disabled
       - vpn                   # Comment this line if vpn is disabled
