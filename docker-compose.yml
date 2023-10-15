@@ -86,7 +86,7 @@ services:
   ## Change password after install from UI --> Tools --> Options --> WebUI ##
   qbittorrent:
     container_name: qbittorrent
-    image: lscr.io/linuxserver/qbittorrent:4.5.4
+    image: lscr.io/linuxserver/qbittorrent:4.5.5
     # Comment this if vpn is disabled
     depends_on:               # Comment this line if vpn is disabled
       - vpn                   # Comment this line if vpn is disabled
@@ -103,14 +103,14 @@ services:
       - torrent-downloads:/downloads
 
     ## Uncomment below ports if VPN is disabled.
-    # ports:
+    # ports:5.0.3
     #   - 5080:5080
     #   - 6881:6881
     #   - 6881:6881/udp
     restart: "unless-stopped"
   radarr:
     container_name: radarr
-    image: lscr.io/linuxserver/radarr:4.7.5
+    image: lscr.io/linuxserver/radarr:5.0.3
     networks:
       - mynetwork
     environment:
@@ -179,7 +179,7 @@ services:
     restart: unless-stopped
 
   jellyfin:
-    image: lscr.io/linuxserver/jellyfin:10.8.10
+    image: lscr.io/linuxserver/jellyfin:10.8.11
     container_name: jellyfin
     networks:
       - mynetwork
